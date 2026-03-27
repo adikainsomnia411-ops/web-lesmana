@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jansz - Web Dominan</title>
+    <link href="https://cdnjs.cloudfla\re.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(12, 12, 12, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(0, 212, 255, 0.3) 0%, transparent 50%);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #00d4ff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #ffffff;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #00d4ff;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            color: #00d4ff;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: inherit;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 5%;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 80px 5%;
+            }
+        }
+
+        /* Scroll animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Hi, I'm <span style="background: linear-gradient(45deg, #00d4ff, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Adika Britanto</span></h1>
+            <p>Full Stack Developer & UI/UX Designer yang passionate dalam menciptakan pengalaman digital yang luar biasa.</p>
+            <a href="#projects" class="cta-button">Click Untuk Teleportasi</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">Tentang Web Ini</h2>
+        <div class="about-content">
+            <div class="about-image">
+                    <img src="profile.jpg" alt="Adika" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+</div>
+            </div>
+            <div class="about-text">
+                <h3>Selamat datang di web resmi adika!</h3>
+                <p>Perkenalkan ini web resmi adika! web ini dibuat hanya untuk percobaan pertama kalinya coding web html memakai VS code.</p>
+                <p>Dan web ini juga akan ada update nya setiap saya niat untuk mempertambah fitur untuk kalian semua!.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="section-title">Skills!</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                <h3>HTML5 & CSS3</h3>
+                <p>Struktur dan styling modern dengan CSS Grid, Flexbox, dan animasi</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fab fa-js-square"></i></div>
+                <h3>JavaScript</h3>
+                <p>Vanilla JS, ES6+, React, Node.js</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fab fa-react"></i></div>
+                <h3>React.js</h3>
+                <p>React Hooks, Context API, Next.js</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-database"></i></div>
+                <h3>Backend</h3>
+                <p>Node.js, Express, MongoDB, MySQL</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">E-Commerce Platform</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <p>Platform e-commerce lengkap dengan fitur cart, payment gateway, dan admin dashboard.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Task Management App</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">Prisma</span>
+                    </div>
+                    <p>Aplikasi manajemen task dengan real-time collaboration dan drag & drop interface.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Analytics Dashboard</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                    <p>Dashboard analitik interaktif dengan visualisasi data real-time dan responsive design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Hubungi Saya
+
+        </h2>
+        <div class="
